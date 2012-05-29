@@ -1,0 +1,808 @@
+<?xml version="1.0"?>
+<interface>
+  <requires lib="gtk+" version="2.16"/>
+  <!-- interface-naming-policy project-wide -->
+  <object class="GtkWindow" id="window">
+    <signal name="destroy" handler="on_window_destroy"/>
+    <child>
+      <object class="GtkVBox" id="vbox1">
+        <property name="visible">True</property>
+        <child>
+          <object class="GtkMenuBar" id="menubar1">
+            <property name="visible">True</property>
+            <child>
+              <object class="GtkMenuItem" id="file">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">&#x6587;&#x4EF6;(_F)</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menu1">
+                    <property name="visible">True</property>
+                    <child>
+                      <object class="GtkImageMenuItem" id="log_out">
+                        <property name="label" translatable="yes">&#x6CE8;&#x9500;(L)</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="image">image3</property>
+                        <property name="use_stock">False</property>
+                        <signal name="activate" handler="on_log_out_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="restart">
+                        <property name="label" translatable="yes">&#x91CD;&#x542F;(E)</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="image">image2</property>
+                        <property name="use_stock">False</property>
+                        <signal name="activate" handler="on_restart_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="halt">
+                        <property name="label" translatable="yes">&#x5173;&#x673A;(S)</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="image">image1</property>
+                        <property name="use_stock">False</property>
+                        <signal name="activate" handler="on_halt_activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="separatormenuitem1">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="exit">
+                        <property name="label">gtk-quit</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_window_destroy"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="view">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">&#x89C6;&#x56FE;(_V)</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menu3">
+                    <property name="visible">True</property>
+                    <child>
+                      <object class="GtkImageMenuItem" id="rotate">
+                        <property name="label">gtk-convert</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_rotate_activate" object="notebook"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="refresh">
+                        <property name="label">gtk-refresh</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="get_progress_page_info"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="progress">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">&#x6740;&#x6B7B;&#x8FDB;&#x7A0B;(K)</property>
+                <property name="use_underline">True</property>
+                <signal name="button_press_event" handler="on_progress_activate" object="kill_dialog"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="help">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">&#x5E2E;&#x52A9;(_H)</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menu2">
+                    <property name="visible">True</property>
+                    <child>
+                      <object class="GtkImageMenuItem" id="about">
+                        <property name="label">gtk-about</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_about_activate" object="about_dialog"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkNotebook" id="notebook">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="tab_hborder">19</property>
+            <property name="tab_vborder">4</property>
+            <property name="homogeneous">True</property>
+            <child>
+              <object class="GtkHPaned" id="hpaned1">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="position_set">True</property>
+                <child>
+                  <object class="GtkImage" id="image4">
+                    <property name="visible">True</property>
+                    <property name="pixbuf">1.png</property>
+                  </object>
+                  <packing>
+                    <property name="resize">False</property>
+                    <property name="shrink">True</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkVBox" id="vbox3">
+                    <property name="visible">True</property>
+                    <child>
+                      <object class="GtkFrame" id="frame1">
+                        <property name="visible">True</property>
+                        <property name="label_xalign">0</property>
+                        <property name="shadow_type">none</property>
+                        <child>
+                          <object class="GtkAlignment" id="alignment1">
+                            <property name="visible">True</property>
+                            <property name="left_padding">12</property>
+                            <child>
+                              <object class="GtkVBox" id="vbox6">
+                                <property name="visible">True</property>
+                                <child>
+                                  <object class="GtkLabel" id="vendor_id">
+                                    <property name="visible">True</property>
+                                    <property name="label" translatable="yes">label</property>
+                                    <property name="ellipsize">start</property>
+                                  </object>
+                                  <packing>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="model_name">
+                                    <property name="visible">True</property>
+                                    <property name="label" translatable="yes">label</property>
+                                    <property name="justify">right</property>
+                                    <property name="ellipsize">start</property>
+                                  </object>
+                                  <packing>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="cpu_mhz">
+                                    <property name="visible">True</property>
+                                    <property name="label" translatable="yes">label</property>
+                                    <property name="ellipsize">start</property>
+                                  </object>
+                                  <packing>
+                                    <property name="position">2</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="cache_size">
+                                    <property name="visible">True</property>
+                                    <property name="label" translatable="yes">label</property>
+                                    <property name="ellipsize">start</property>
+                                  </object>
+                                  <packing>
+                                    <property name="position">3</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="address_sizes">
+                                    <property name="visible">True</property>
+                                    <property name="label" translatable="yes">label</property>
+                                    <property name="ellipsize">start</property>
+                                  </object>
+                                  <packing>
+                                    <property name="position">4</property>
+                                  </packing>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child type="label">
+                          <object class="GtkLabel" id="label1">
+                            <property name="visible">True</property>
+                            <property name="label" translatable="yes">&lt;b&gt;CPU&#x4FE1;&#x606F;&lt;/b&gt;</property>
+                            <property name="use_markup">True</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkFrame" id="frame2">
+                        <property name="visible">True</property>
+                        <property name="label_xalign">0</property>
+                        <property name="shadow_type">none</property>
+                        <child>
+                          <object class="GtkAlignment" id="alignment2">
+                            <property name="visible">True</property>
+                            <property name="left_padding">12</property>
+                            <child>
+                              <object class="GtkLabel" id="mem_total">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">label</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child type="label">
+                          <object class="GtkLabel" id="label2">
+                            <property name="visible">True</property>
+                            <property name="label" translatable="yes">&lt;b&gt;&#x4E3B;&#x5B58;&#x4FE1;&#x606F;&lt;/b&gt;</property>
+                            <property name="use_markup">True</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkFrame" id="frame3">
+                        <property name="visible">True</property>
+                        <property name="label_xalign">0</property>
+                        <property name="shadow_type">none</property>
+                        <child>
+                          <object class="GtkAlignment" id="alignment3">
+                            <property name="visible">True</property>
+                            <property name="left_padding">12</property>
+                            <child>
+                              <object class="GtkVBox" id="vbox4">
+                                <property name="visible">True</property>
+                                <child>
+                                  <object class="GtkLabel" id="os_version">
+                                    <property name="visible">True</property>
+                                    <property name="label" translatable="yes">label</property>
+                                  </object>
+                                  <packing>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="kernel_version">
+                                    <property name="visible">True</property>
+                                    <property name="label" translatable="yes">label</property>
+                                  </object>
+                                  <packing>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="host_name">
+                                    <property name="visible">True</property>
+                                    <property name="label" translatable="yes">label</property>
+                                  </object>
+                                  <packing>
+                                    <property name="position">2</property>
+                                  </packing>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child type="label">
+                          <object class="GtkLabel" id="label3">
+                            <property name="visible">True</property>
+                            <property name="label" translatable="yes">&lt;b&gt;OS&#x4FE1;&#x606F;&lt;/b&gt;</property>
+                            <property name="use_markup">True</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="resize">True</property>
+                    <property name="shrink">True</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
+            <child type="tab">
+              <object class="GtkLabel" id="system">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">&#x7CFB;&#x7EDF;&#x4FE1;&#x606F;</property>
+              </object>
+              <packing>
+                <property name="tab_fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkVBox" id="vbox5">
+                <property name="visible">True</property>
+                <child>
+                  <object class="GtkStatusbar" id="statusbar2">
+                    <property name="visible">True</property>
+                    <property name="spacing">2</property>
+                    <property name="has_resize_grip">False</property>
+                    <child>
+                      <object class="GtkHBox" id="hbox2">
+                        <property name="visible">True</property>
+                        <child>
+                          <object class="GtkVSeparator" id="vseparator4">
+                            <property name="visible">True</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="label6">
+                            <property name="visible">True</property>
+                            <property name="label" translatable="yes">     &#x8FDB;&#x7A0B;&#x540D;       </property>
+                          </object>
+                          <packing>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkVSeparator" id="vseparator5">
+                            <property name="visible">True</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="position">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="label7">
+                            <property name="visible">True</property>
+                            <property name="label" translatable="yes">stat</property>
+                          </object>
+                          <packing>
+                            <property name="position">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkVSeparator" id="vseparator6">
+                            <property name="visible">True</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="position">4</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="label8">
+                            <property name="visible">True</property>
+                            <property name="label" translatable="yes"> pid </property>
+                          </object>
+                          <packing>
+                            <property name="position">5</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkHBox" id="hbox1">
+                        <property name="visible">True</property>
+                        <child>
+                          <object class="GtkVSeparator" id="vseparator1">
+                            <property name="visible">True</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="label9">
+                            <property name="visible">True</property>
+                            <property name="label" translatable="yes"> ppid </property>
+                          </object>
+                          <packing>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkVSeparator" id="vseparator2">
+                            <property name="visible">True</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="position">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="label10">
+                            <property name="visible">True</property>
+                            <property name="label" translatable="yes">    memery</property>
+                          </object>
+                          <packing>
+                            <property name="position">3</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkStatusbar" id="statusbar3">
+                        <property name="visible">True</property>
+                        <property name="spacing">3</property>
+                        <property name="has_resize_grip">False</property>
+                      </object>
+                      <packing>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkHSeparator" id="hseparator1">
+                    <property name="visible">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkScrolledWindow" id="scrolledwindow1">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="hscrollbar_policy">automatic</property>
+                    <property name="vscrollbar_policy">automatic</property>
+                    <child>
+                      <object class="GtkTextView" id="process_text">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="editable">False</property>
+                        <property name="justification">fill</property>
+                        <property name="cursor_visible">False</property>
+                        <property name="buffer">progress_text_buffer</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child type="tab">
+              <object class="GtkLabel" id="process">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">&#x8FDB;&#x7A0B;&#x4FE1;&#x606F;</property>
+                <property name="ellipsize">start</property>
+              </object>
+              <packing>
+                <property name="position">1</property>
+                <property name="tab_fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkVBox" id="vbox2">
+                <property name="visible">True</property>
+                <child>
+                  <object class="GtkVBox" id="vbox7">
+                    <property name="visible">True</property>
+                    <child>
+                      <object class="GtkLabel" id="label4">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">cpu&#x5229;&#x7528;&#x7387;</property>
+                      </object>
+                      <packing>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkCurve" id="cpu_curve">
+                        <property name="visible">True</property>
+                      </object>
+                      <packing>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkVBox" id="vbox8">
+                    <property name="visible">True</property>
+                    <child>
+                      <object class="GtkLabel" id="label5">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">&#x5185;&#x5B58;&#x5229;&#x7528;&#x7387;</property>
+                      </object>
+                      <packing>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkProgressBar" id="mem_progress">
+                        <property name="visible">True</property>
+                        <property name="show_text">True</property>
+                      </object>
+                      <packing>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child type="tab">
+              <object class="GtkLabel" id="resorce">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">&#x8D44;&#x6E90;&#x4FE1;&#x606F;</property>
+              </object>
+              <packing>
+                <property name="position">2</property>
+                <property name="tab_fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkScrolledWindow" id="scrolledwindow4">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="hscrollbar_policy">automatic</property>
+                <property name="vscrollbar_policy">automatic</property>
+                <child>
+                  <object class="GtkTextView" id="textview">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="editable">False</property>
+                    <property name="buffer">device_text_buffer</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="position">3</property>
+              </packing>
+            </child>
+            <child type="tab">
+              <object class="GtkLabel" id="device">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">&#x8BBE;&#x5907;&#x4FE1;&#x606F;</property>
+              </object>
+              <packing>
+                <property name="position">3</property>
+                <property name="tab_fill">False</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkStatusbar" id="statusbar1">
+            <property name="visible">True</property>
+            <property name="spacing">2</property>
+            <child>
+              <object class="GtkLabel" id="cpu_status_bar">
+                <property name="visible">True</property>
+                <property name="ypad">2</property>
+              </object>
+              <packing>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="mem_status_bar">
+                <property name="visible">True</property>
+              </object>
+              <packing>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="now_time">
+                <property name="visible">True</property>
+              </object>
+              <packing>
+                <property name="position">3</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkImage" id="image1">
+    <property name="visible">True</property>
+    <property name="stock">gtk-stop</property>
+  </object>
+  <object class="GtkImage" id="image2">
+    <property name="visible">True</property>
+    <property name="stock">gtk-media-record</property>
+  </object>
+  <object class="GtkImage" id="image3">
+    <property name="visible">True</property>
+    <property name="stock">gtk-sort-ascending</property>
+  </object>
+  <object class="GtkAboutDialog" id="about_dialog">
+    <property name="border_width">5</property>
+    <property name="type">popup</property>
+    <property name="window_position">mouse</property>
+    <property name="type_hint">normal</property>
+    <property name="program_name">Task Manager</property>
+    <property name="version">v1.0</property>
+    <property name="copyright" translatable="yes">Copyright &#xA9; 2011-2011 changzhi.</property>
+    <property name="comments" translatable="yes">--linux&#x7684;&#x56FE;&#x5F62;&#x5316;&#x4EFB;&#x52A1;&#x7BA1;&#x7406;&#x5668;</property>
+    <property name="license" translatable="yes">Task Manager&#x662F;&#x81EA;&#x7531;&#x8F6F;&#x4EF6;&#xFF1B;&#x60A8;&#x53EF;&#x4EE5;&#x91CD;&#x65B0;&#x53D1;&#x5E03;&#x5B83;&#xFF0C;
+&#x6216;&#x8005;&#x5728;GNU General Public License&#x8BB8;&#x53EF;&#x6761;
+&#x6B3E;&#x4E0B;&#x4FEE;&#x6539;&#x5B83;&#x5E76;&#x7531;&#x81EA;&#x7531;&#x8F6F;&#x4EF6;&#x57FA;&#x91D1;&#x4F1A;&#x53D1;&#x5E03;&#xFF1B;&#x5BF9;&#x4E8E;&#x60A8;&#x7684;&#x4F7F;
+&#x7528;&#x7B14;&#x8005;&#x5728;&#x6B64;&#x8868;&#x793A;&#x7531;&#x8877;&#x7684;&#x611F;&#x8C22;, &#x5728;&#x6B64;&#x5E0C;&#x671B;&#x5B83;&#x80FD;&#x7ED9;&#x60A8;&#x5BF9;
+&#x4E8E;linux&#x7684;&#x4F7F;&#x7528;&#x5E26;&#x6765;&#x5E2E;&#x52A9;. &#x66F4;&#x591A;&#x7EC6;&#x8282;&#x8BF7;&#x53C2;&#x89C1;GNU 
+General Public License...
+&#x9274;&#x4E8E;&#x672C;&#x4EFB;&#x52A1;&#x7BA1;&#x7406;&#x5668;&#x4E3A;&#x7B2C;&#x4E00;&#x7248;, &#x53EF;&#x80FD;&#x8FD8;&#x6709;&#x5F88;&#x591A;&#x7684;&#x4E0D;&#x8DB3;, 
+&#x6B22;&#x8FCE;&#x7528;&#x6237;&#x4E0E;&#x6211;&#x4EEC;&#x8054;&#x7CFB;. 
+&#x8054;&#x7CFB;&#x65B9;&#x5F0F;: huangchangzhi@gmail.com</property>
+    <property name="logo">1.png</property>
+    <child internal-child="vbox">
+      <object class="GtkVBox" id="dialog-vbox1">
+        <property name="visible">True</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkHButtonBox" id="dialog-action_area1">
+            <property name="visible">True</property>
+            <property name="homogeneous">True</property>
+            <property name="layout_style">end</property>
+            <child>
+              <object class="GtkButton" id="about_exit">
+                <property name="label" translatable="yes">&#x786E;&#x5B9A;</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_about_exit_clicked" object="about_dialog"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <action-widgets>
+      <action-widget response="0">about_exit</action-widget>
+    </action-widgets>
+  </object>
+  <object class="GtkTextBuffer" id="device_text_buffer"/>
+  <object class="GtkTextBuffer" id="progress_text_buffer"/>
+  <object class="GtkDialog" id="kill_dialog">
+    <property name="border_width">5</property>
+    <property name="window_position">mouse</property>
+    <property name="destroy_with_parent">True</property>
+    <property name="type_hint">normal</property>
+    <signal name="destroy" handler="on_kill_dialog_destroy"/>
+    <child internal-child="vbox">
+      <object class="GtkVBox" id="dialog-vbox2">
+        <property name="visible">True</property>
+        <property name="spacing">2</property>
+        <child>
+          <object class="GtkVBox" id="vbox9">
+            <property name="visible">True</property>
+            <child>
+              <object class="GtkLabel" id="label11">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">&#x8BF7;&#x8F93;&#x5165;&#x5F85;&#x6740;&#x6B7B;&#x8FDB;&#x7A0B;&#x7684;pid :</property>
+              </object>
+              <packing>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="kill_entry">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="invisible_char">&#x25CF;</property>
+              </object>
+              <packing>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child internal-child="action_area">
+          <object class="GtkHButtonBox" id="dialog-action_area2">
+            <property name="visible">True</property>
+            <property name="layout_style">end</property>
+            <child>
+              <object class="GtkButton" id="kill_ok">
+                <property name="label" translatable="yes">&#x786E;&#x8BA4;</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_kill_ok_clicked" object="kill_entry"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="kill_cancel">
+                <property name="label" translatable="yes">&#x53D6;&#x6D88;</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_kill_cancel_clicked" object="kill_dialog"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <action-widgets>
+      <action-widget response="0">kill_ok</action-widget>
+      <action-widget response="0">kill_cancel</action-widget>
+    </action-widgets>
+  </object>
+</interface>
